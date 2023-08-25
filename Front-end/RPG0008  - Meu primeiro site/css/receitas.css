@@ -1,0 +1,32 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
+/* main */
+main{
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+/* receitas container */ 
+.receitas_container{
+    background-color: rgba(246, 199, 158, 0.958);
+    height: 500px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px black;
+}
+.receitas_container > img{
+    width: 240px;
+}
+.receitas_container > hr{
+    width: 90%;
+}
+.receitas_container > p{
+    font-size: 15px;
+    text-align: justify;
+    padding: 8px;
+    letter-spacing: -1px;
+}

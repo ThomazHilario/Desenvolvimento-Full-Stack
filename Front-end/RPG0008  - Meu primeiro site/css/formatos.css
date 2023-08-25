@@ -1,0 +1,45 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body{
+    background-color: rgb(165, 137, 243);
+}
+
+/* header */
+header{
+    height: 60px;
+}
+/* main */
+main{
+    height: calc(100vh - 100px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    overflow-y: auto;
+}
+
+/* logotipo */
+#logotipo{
+    display: flex;
+    align-items: center;
+}
+
+/* article */
+article{
+    text-align: center;
+}
+article > h2{
+    letter-spacing: 1px;
+}
+
+/* rodapé */
+footer{
+    background-color: rgb(40, 40, 40);
+    text-align: center;
+    color: white;
+    height: 40px;
+}
