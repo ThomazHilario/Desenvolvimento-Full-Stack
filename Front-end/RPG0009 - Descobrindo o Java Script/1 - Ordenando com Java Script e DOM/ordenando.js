@@ -21,4 +21,46 @@ let shuffle = (vetor) => {
 
 }
 
+// bubble_sort
+let bubble_sort = (vetor) => {
+    for(let i = 0; i< vetor.length;i++){
+        for(let j = 0; j < vetor.length;j++){
+            if(vetor[j] > vetor[j + 1]){
+                swap(vetor,j,j + 1)
+            }
+        }
+    }
+}
 
+// Selection_sort
+let Selection_sort = (vetor) => {
+    for(let i = 0; i < vetor.length;i++){
+        let min = i
+        for(let j = i + 1; j < vetor.length;j++){
+            if(vetor[j] < vetor[min]){
+                min = j
+            }
+        }
+        swap(vetor,i,min)
+    }
+}
+
+// quick_sort
+let quick_sort = (vetor) => {
+    if(vetor.length <= 1){
+        return vetor
+    }
+    let pivo = vetor[0]
+    let leftVetor = []
+    let rightVetor = []
+
+    for(let i = 1;i < vetor.length;i++){
+        if(vetor[i] < pivo){
+            leftVetor.push(vetor[i])
+        } else{
+            rightVetor.push(vetor[i])
+        }
+    }
+
+    return [...quick_sort(leftVetor),pivo, ...quick_sort(rightVetor)]
+}
