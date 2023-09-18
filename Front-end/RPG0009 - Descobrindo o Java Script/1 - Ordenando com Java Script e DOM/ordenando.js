@@ -64,3 +64,68 @@ let quick_sort = (vetor) => {
 
     return [...quick_sort(leftVetor),pivo, ...quick_sort(rightVetor)]
 }
+
+
+// add
+function add(){
+    // valores
+    let input = document.getElementById('valor')
+    // lista
+    let lista = document.getElementById('valores')
+
+    let li = document.createElement('li')
+    li.textContent = input.value
+
+    lista.append(li)
+
+    input.value = ``
+
+}
+// ordenar
+function ordenar(){
+    // lista
+    let lista = document.getElementById('valores')
+    // array vazio
+    let vetor = []
+    // Percorrendo cada elemento e adicionando no array
+    for(let i = 0;i < lista.children.length; i++){
+        vetor.push(parseInt(lista.children[i].textContent))
+    }
+    // Condicoes
+    if(document.getElementById('selectedIndex').value == '0'){
+        bubble_sort(vetor)
+        let novoVetor = vetor.map(e => `<li>${e}</li>`)
+        let novaLista = novoVetor.reduce((acumulador,elementos) => acumulador + elementos)
+        lista.innerHTML = novaLista
+    }
+    if(document.getElementById('selectedIndex').value == '1'){
+        Selection_sort(vetor)
+        let novoVetor = vetor.map(e => `<li>${e}</li>`)
+        let novaLista = novoVetor.reduce((acumulador,elementos) => acumulador + elementos)
+        lista.innerHTML = novaLista
+    }
+    if(document.getElementById('selectedIndex').value == '2'){   
+        let novoVetor = quick_sort(vetor)
+        let novosLi = novoVetor.map(e => `<li>${e}</li>`)
+        let novaLista = novosLi.reduce((acumulador,elementos) => acumulador+= elementos)
+        lista.innerHTML = novaLista
+    }
+}
+// misturar
+
+function misturar(){
+    let lista = document.getElementById('valores').children
+    let vetor = []
+    for(let i = 0;i < lista.length;i++){
+        vetor.push(parseInt(lista[i].textContent))
+    }
+
+    shuffle(vetor)
+    let novoVetor = vetor.map(e => e)
+    
+    for(let i =0;i < lista.length;i++){
+        lista[i].innerHTML = novoVetor[i]
+    }
+    
+
+}

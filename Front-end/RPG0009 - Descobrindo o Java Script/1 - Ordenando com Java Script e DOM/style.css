@@ -1,0 +1,53 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#container{
+    gap: 10px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: start;
+}
+input{
+    display: block;
+    width: 280px;
+    height: 25px;
+    border-radius: 5px;
+    border: 2px solid black;
+    padding: 5px;
+}
+/* buttons */
+.sort{
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 0px;
+    background-color: rgb(107, 107, 223);
+    font-weight: bold;
+    cursor: pointer;
+}
+/* linha horizontal */
+hr{
+    width: 100%;
+}
+/* select */
+#selectedIndex{
+    width: 295px;
+    height: 40px;
+    border: 2px solid black;
+    border-radius: 5px;
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 5px;
+}
+
+
