@@ -1,33 +1,54 @@
-.App {
+/* main */
+main{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+/* table */
+table{
+  border-collapse: collapse;
+}
+
+/*tHead */
+thead > tr {
+  background-color: rgb(40, 40, 40);
+  color: white;
+}
+thead > tr > th{
+  padding: 20px;
+}
+
+/* tbody */
+tbody > :nth-child(odd){
+  background-color: rgb(215, 213, 213);
+}
+
+/* button*/
+button{
+  background-color: rgb(227, 88, 88);
+  border-radius: 5px;
+  height: 25px;
+  border: 0px;
+  color: white;
+  display: block;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+/* conteudo da tabela */
+td{
+  padding: 20px;
+}
+
+#editoras{
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+p{
+  text-align: justify;
+  width: 500px;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
