@@ -17,6 +17,8 @@ thead > tr {
 }
 thead > tr > th{
   padding: 20px;
+  text-align: center;
+  width: 280px;
 }
 
 /* tbody */
