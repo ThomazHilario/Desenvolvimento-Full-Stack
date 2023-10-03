@@ -1,12 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter,Routes, Route, Link, Router } from 'react-router-dom';
 import './App.css';
 import LivroLista from './livroLista';
+import LivroDados from './livroDados';
+
 function App() {
   return (
-    <div className="App">
-      {<LivroLista/>}
-    </div>
+    
+    <BrowserRouter>
+    <nav className="navbar navbar-expand-lg navbar-light bg-light bg-dark">
+          <div className="container">
+            <div className="collapse navbar-collapse" id="navbarNav">
+              <ul className="navbar-nav">
+                <li className="nav-item">
+                  <Link className="nav-link text-light" to="/">LivroLista</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link text-light" to="/dados">LivroDados</Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        
+        <div className="App">
+            <Routes>
+              <Route path='/' element={<LivroLista/>}/>
+              <Route path="/dados" element={<LivroDados/>} />
+            </Routes>
+        </div>
+    </BrowserRouter>
+    
   );
 }
 
