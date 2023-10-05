@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import ControleLivros from '../../../classes/controle/controleLivro';
+import ControleLivros from '../../../../classes/controle/controleLivro';
 
 // instancia do controleLivro
 const controleLivros = new ControleLivros

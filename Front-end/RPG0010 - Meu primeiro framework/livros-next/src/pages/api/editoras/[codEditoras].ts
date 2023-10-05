@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { useRouter } from 'next/router'
-import ControleEditora from '../../../classes/controle/controleEditora';
+import ControleEditora from '../../../../classes/controle/controleEditora';
 import { userAgent } from 'next/server';
 
 let controleEditora = new ControleEditora()
