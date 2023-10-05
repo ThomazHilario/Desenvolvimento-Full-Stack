@@ -2,7 +2,8 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import ControleEditora from '../../../classes/controle/controleEditora';
 
 // instancia controleEditora
-const controleEditora = new ControleEditora
+const controleEditora = new ControleEditora()
+
 export default (req: NextApiRequest, res:NextApiResponse) => {
     try{
         if(req.method === 'GET'){
