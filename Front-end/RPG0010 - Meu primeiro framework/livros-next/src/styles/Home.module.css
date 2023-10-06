@@ -17,7 +17,16 @@
   z-index: 2;
   font-family: var(--font-mono);
 }
-
+.hello th{
+  background-color: rgb(40, 40, 40);
+  color: white;
+}
+.form{
+  width: 50%;
+}
+.button{
+  background-color: red;
+}
 .description a {
   display: flex;
   justify-content: center;

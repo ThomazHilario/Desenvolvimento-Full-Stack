@@ -1,24 +1,28 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { useRouter } from 'next/router'
-import ControleEditora from '../../../../classes/controle/controleEditora';
-import { userAgent } from 'next/server';
+import  ControleEditora  from '../../../../classes/controle/controleEditora';
 
-let controleEditora = new ControleEditora()
+const controleEditora = new ControleEditora();
+
 export default (req: NextApiRequest, res: NextApiResponse) => {
   try {
     if (req.method === 'GET') {
-      const codEditora = Number(req.query.codEditoras); // Converte o parâmetro para número
-      const nomeEditora = controleEditora.getNomeEditora(codEditora); // Supondo que o método getNomeEditora esteja disponível em controleEditora
-      if (nomeEditora) {
-        res.status(200).json({ nome: nomeEditora });
+      const { codEditora } = req.query;
+      const codigo = Number(codEditora);
+
+      if (isNaN(codigo)) {
+        res.status(400).json({ error: 'Código de editora inválido' });
       } else {
-        res.status(404).json({ error: 'Editora não encontrada' });
+        const nomeEditora = controleEditora.getNomeEditora(codigo);
+        if (nomeEditora) {
+          res.status(200).json({ nomeEditora });
+        } else {
+          res.status(404).json({ error: 'Editora não encontrada' });
+        }
       }
     } else {
-      res.status(405).end(); // Método não permitido
+      res.status(405).end();
     }
   } catch (error) {
-    res.status(500).json({ error: 'Erro interno do servidor' });
-    
+    res.status(500).json({ error: 'Ocorreu um erro interno no servidor' });
   }
 };
