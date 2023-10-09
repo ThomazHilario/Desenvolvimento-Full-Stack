@@ -3,12 +3,14 @@ import  ControleEditora  from '../../../../classes/controle/controleEditora';
 
 const controleEditora = new ControleEditora();
 
+// request get e tratando status
 export default (req: NextApiRequest, res: NextApiResponse) => {
   try {
+    // caso seja get
     if (req.method === 'GET') {
       const { codEditora } = req.query;
       const codigo = Number(codEditora);
-
+      
       if (isNaN(codigo)) {
         res.status(400).json({ error: 'Código de editora inválido' });
       } else {

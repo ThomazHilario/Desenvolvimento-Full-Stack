@@ -3,7 +3,10 @@ import ControleLivro  from '../../../../classes/controle/controleLivro';
 
 const controleLivro = new ControleLivro();
 
+// request delete e tratando status
 export default (req: NextApiRequest, res: NextApiResponse) => {
+  
+  // caso seja DELETE
   try {
     if (req.method === 'DELETE') {
       const { codigo } = req.query;
