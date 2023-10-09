@@ -20,9 +20,16 @@ const LinhaLivro: React.FC<LinhaLivroProps> = (props) => {
 
   return (
     <tr>
+      {/* titulo do livro + button */}
       <td>{props.livro.titulo} <button className="bg-danger border-0 rounded-1 mt-1 d-block"onClick={() => props.excluir(props.livro.codigo)}>Excluir</button></td>
+
+      {/* resumo do livro */}
       <td><p>{props.livro.resumo}</p></td>
+
+      {/* Editorado livro */}
       <td id="editoras">{nomeEditora}</td>
+
+      {/* Autores do livro */}
       <td><ul><li>{props.livro.autores}</li></ul></td>
     </tr>
   );
