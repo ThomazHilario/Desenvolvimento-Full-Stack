@@ -82,7 +82,7 @@ const LivroDados = () => {
           </div>
 
           {/* button incluir */}
-            <button className="bg-primary px-4">Incluir</button>
+            <button className=" btn btn-primary mt-2 py-0">Incluir</button>
         </form>
       </main>
     );
