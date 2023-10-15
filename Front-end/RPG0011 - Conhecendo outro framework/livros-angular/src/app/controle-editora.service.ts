@@ -21,5 +21,5 @@ export default class ControleEditoraService {
     const nomeEditora = this.editoras.filter(item => item.codEditora === codEditora)
     return nomeEditora
   }
-  
+
 }
