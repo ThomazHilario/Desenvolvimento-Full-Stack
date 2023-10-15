@@ -11,13 +11,17 @@ const LivroDados = () => {
     const [titulo, setTitulo] = useState('');
     const [resumo, setResumo] = useState('');
     const [autores, setAutores] = useState('');
-    const [codEditora, setCodEditora] = useState(0); // Inicializada com a posição zero de opcoes
+    const [codEditora, setCodEditora] = useState(1); // Inicializada com a posição um para que seja a alta books
     const navigate = useNavigate();
   
-    const opcoes = controleEditora.getEditoras().map(editora => ({
-      value: editora.codEditora,
-      text: editora.nome,
-    }));
+    const opcoes = controleEditora.getEditoras().map(editora => {
+      return(
+        {
+          value: editora.codEditora,
+          text: editora.nome,
+        }
+      )
+    });
   
     const tratarCombo = (event) => {
       setCodEditora(Number(event.target.value));
