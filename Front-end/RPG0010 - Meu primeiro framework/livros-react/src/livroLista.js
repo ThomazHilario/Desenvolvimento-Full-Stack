@@ -13,7 +13,7 @@ function LinhaLivro({ livro, excluir }) {
       <td>{livro.titulo} <br></br><button className="btn btn-danger"onClick={() => excluir(livro.codigo)}>Excluir</button></td>
       <td><p>{livro.resumo}</p></td>
       <td id="editoras">{nomeEditora}</td>
-      <td><ul><li>{livro.autores}</li></ul></td>
+      <td><ul>{livro.autores.map((item,key) => <li key={key}>{item}</li>)}</ul></td>
     </tr>
   );
 }
