@@ -11,10 +11,6 @@ table{
 }
 
 /*tHead */
-thead > tr {
-  background-color: rgb(40, 40, 40);
-  color: white;
-}
 thead > tr > th{
   padding: 20px;
   text-align: center;
@@ -28,12 +24,9 @@ tbody > :nth-child(odd){
 
 /* button*/
 button{
-  background-color: rgb(227, 88, 88);
-  border-radius: 5px;
-  height: 25px;
+  height: 35px;
   border: 0px;
   color: white;
-  display: block;
   cursor: pointer;
   margin-top: 5px;
 }

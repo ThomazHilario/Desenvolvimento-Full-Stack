@@ -10,7 +10,7 @@ function LinhaLivro({ livro, excluir }) {
 
   return (
     <tr>
-      <td>{livro.titulo} <button onClick={() => excluir(livro.codigo)}>Excluir</button></td>
+      <td>{livro.titulo} <br></br><button className="btn btn-danger"onClick={() => excluir(livro.codigo)}>Excluir</button></td>
       <td><p>{livro.resumo}</p></td>
       <td id="editoras">{nomeEditora}</td>
       <td><ul><li>{livro.autores}</li></ul></td>
@@ -43,7 +43,7 @@ function LivroLista() {
         <h1>Catalogo de Livros</h1>
         <table>
           <thead>
-            <tr>
+            <tr className='bg-dark text-white'>
               <th>Título</th>
               <th>Resumo</th>
               <th>Editora</th>
