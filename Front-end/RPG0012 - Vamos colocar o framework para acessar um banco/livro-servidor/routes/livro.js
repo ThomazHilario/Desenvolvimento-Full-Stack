@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
     try {
         const novoLivro = req.body
-        const livroInserido = await incluir(novoLivro)
+        const livroInserido = Livro.create(novoLivro)
         res.json({ message: 'Livro incluído com sucesso', livro:  livroInserido});
     } catch (error) {
       res.status(500).json({ error: error.message });

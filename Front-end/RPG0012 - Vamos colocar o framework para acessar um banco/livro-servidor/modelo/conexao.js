@@ -1,6 +1,5 @@
 // importando biblioteca moongose
 const banco = require('mongoose');
-
 // Definindo as opções de conexão
 const options = {
     useUnifiedTopology: true,
