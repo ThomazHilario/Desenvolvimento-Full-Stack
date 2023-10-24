@@ -2,26 +2,10 @@
 const banco = require('./conexao')
 
 const LivroSchema = new banco.Schema ({
-    _id:{
-        type:banco.Schema.Types.ObjectId,
-        require:true
-    },
-    titulo:{
-        type:String,
-        require:true
-    },
-    codEditora:{
-        type:Number,
-        require:true
-    },
-    resumo:{
-        type:String,
-        require:true
-    },
-    autores:{
-        type:[String],
-        require:true
-    }
+    titulo: String,
+    codEditora:Number, 
+    resumo:String,
+    autores:[String]
 })
 
 // Crie um modelo a partir do esquema definido

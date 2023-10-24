@@ -6,14 +6,18 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const bodyParser = require("body-parser")
+
 
 const cors = require('cors')
 var app = express();
 app.use(cors());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // livro Router
 const livroRouter = require('./routes/livro');
 
+app.use('/livro', livroRouter);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -43,5 +47,10 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.use('/livros', livroRouter);
+app.use(
+  express.urlencoded({ extended: true })
+);
+  
+app.use(express.json());
+
 module.exports = app;

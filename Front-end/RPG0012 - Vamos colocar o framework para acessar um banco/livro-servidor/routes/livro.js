@@ -1,5 +1,6 @@
 // importando livro dao
 const {obterLivros, excluir , incluir } = require('../modelo/livro-dao')
+const Livro = require('../modelo/livro-schema')
 
 // variavel express
 const express = require('express')
@@ -19,10 +20,10 @@ router.get('/', async (req, res) => {
 
 // incluindo livro
 router.post('/', async (req, res) => {
-    const novoLivro = req.body;
     try {
-      const livroInserido = await incluir(novoLivro);
-      res.json({ message: 'Livro incluído com sucesso', livro: livroInserido });
+        const novoLivro = req.body
+        const livroInserido = await incluir(novoLivro)
+        res.json({ message: 'Livro incluído com sucesso', livro:  livroInserido});
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
