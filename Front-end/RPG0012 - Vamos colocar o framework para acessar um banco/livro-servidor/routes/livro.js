@@ -20,8 +20,8 @@ app.get('/', async (req, res) => {
 app.post('/', async (req, res) => {
     try {
         const novoLivro = req.body
-        const livroInserido = Livro.create(novoLivro)
-        res.json({ message: 'Livro incluído com sucesso', livro:  livroInserido});
+        const livroInserido = incluir(novoLivro)
+        res.json({ message: 'Livro incluído com sucesso', livro:  novoLivro});
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
