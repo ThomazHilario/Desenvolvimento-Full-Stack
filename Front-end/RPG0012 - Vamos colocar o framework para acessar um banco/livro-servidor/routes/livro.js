@@ -1,15 +1,13 @@
 // importando livro dao
 const {obterLivros, excluir , incluir } = require('../modelo/livro-dao')
 const Livro = require('../modelo/livro-schema')
-
 // variavel express
 const express = require('express')
-
-// router
-const router = express.Router()
+const app = express()
+app.use(express.json())
 
 // pegando os livros
-router.get('/', async (req, res) => {
+app.get('/', async (req, res) => {
     try {
       const livros = await obterLivros();
       res.json(livros);
@@ -19,7 +17,7 @@ router.get('/', async (req, res) => {
 });
 
 // incluindo livro
-router.post('/', async (req, res) => {
+app.post('/', async (req, res) => {
     try {
         const novoLivro = req.body
         const livroInserido = Livro.create(novoLivro)
@@ -30,7 +28,7 @@ router.post('/', async (req, res) => {
 });
 
 // excluindo livro
-router.delete('/:codigo', async (req, res) => {
+app.delete('/:codigo', async (req, res) => {
     const codigoLivro = req.params.codigo;
     try {
       await excluir(codigoLivro);
@@ -41,4 +39,4 @@ router.delete('/:codigo', async (req, res) => {
 });
 
 
-module.exports = router;
+module.exports = app;
