@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // livro Router
 const livroRouter = require('./routes/livro');
 
-app.use('/livro', livroRouter);
+app.use('/livros', livroRouter);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

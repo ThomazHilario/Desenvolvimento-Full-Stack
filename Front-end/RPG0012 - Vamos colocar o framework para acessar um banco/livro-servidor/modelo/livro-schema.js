@@ -1,5 +1,5 @@
 // importando conexao com o banco
-const banco = require('./conexao')
+const banco = require('./conexao.js')
 
 const LivroSchema = new banco.Schema ({
     titulo: String,

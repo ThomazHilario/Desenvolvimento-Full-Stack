@@ -1,5 +1,5 @@
 // import livro schema
-const Livro = require('./livro-schema')
+const Livro = require('./livro-schema.js')
 
 // obtendo livros
 const obterLivros = async () => {
