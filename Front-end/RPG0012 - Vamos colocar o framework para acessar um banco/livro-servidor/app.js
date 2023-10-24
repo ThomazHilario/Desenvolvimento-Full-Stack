@@ -7,7 +7,12 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+const cors = require('cors')
 var app = express();
+app.use(cors());
+
+// livro Router
+const livroRouter = require('./routes/livro');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -38,4 +43,5 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+app.use('/livros', livroRouter);
 module.exports = app;
