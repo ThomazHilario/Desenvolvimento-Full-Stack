@@ -89,7 +89,7 @@ function ordenar(){
     let vetor = []
     // Percorrendo cada elemento e adicionando no array
     for(let i = 0;i < lista.children.length; i++){
-        vetor.push(parseInt(lista.children[i].textContent))
+        vetor.push(eval(lista.children[i].textContent))
     }
     // Condicoes
     if(document.getElementById('selectedIndex').value == '0'){
