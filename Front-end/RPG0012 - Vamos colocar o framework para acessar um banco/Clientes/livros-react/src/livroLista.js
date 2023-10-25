@@ -10,7 +10,7 @@ function LinhaLivro({ livro, excluir }) {
 
   return (
     <tr>
-      <td>{livro.titulo} <br></br><button className="btn btn-danger"onClick={() => excluir(livro.codigo,livro.codEditora)}>Excluir</button></td>
+      <td>{livro.titulo} <br></br><button className="btn btn-danger"onClick={() => excluir(livro.codigo)}>Excluir</button></td>
       <td><p>{livro.resumo}</p></td>
       <td id="editoras">{nomeEditora}</td>
       <td><ul>{livro.autores.map((item,key) => <li key={key}>{item}</li>)}</ul></td>
@@ -28,16 +28,16 @@ function LivroLista() {
       })
   }, [carregado]);
 
-  const excluir = async (codigo,index) => {
-    // escluindo do banco de dados
-    controleLivro.excluir(codigo).then(mensage => {
-      // excluindo da lista de livros
-      const novosLivros = [...livros]
-      novosLivros.splice(index - 1,1)
-      setLivros([...novosLivros])
-      setCarregado(true)
+  const excluir = async (codigo) => {
+    // excluindo do banco de dados
+    controleLivro.excluir(codigo).then(() => {
+      
+      // Forçando carregamento da pagina
+       setCarregado(true);
     })
-    setCarregado(false);
+
+    // Alterando o valor para false
+   setCarregado(false)
   };
 
   // return

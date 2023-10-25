@@ -28,17 +28,25 @@ const LivroDados = () => {
     };
   
     const incluir = (event) => {
+      // cancelando envio do formulario
       event.preventDefault();
+
       const autoresArray = autores.split('\n');
+
+      // A chave codigo tem que ser null, pois o proprio mongo ira dar uma chave a ele, por isso string vazia não é permitido,
       const novoLivro = {
-        codigo: 0, // Código inicializado com zero
+        codigo:null,
         titulo,
         resumo,
         autores: autoresArray,
         codEditora,
       };
-      controleLivro.incluir(novoLivro);
-      navigate('/');
+      controleLivro.incluir(novoLivro).then(menssage => {
+        if(menssage){
+          navigate('/');
+        }
+      })
+      console.log(novoLivro)
     };
   
     return (
