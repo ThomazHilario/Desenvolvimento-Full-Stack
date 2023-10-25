@@ -10,7 +10,7 @@ function LinhaLivro({ livro, excluir }) {
 
   return (
     <tr>
-      <td>{livro.titulo} <br></br><button className="btn btn-danger"onClick={() => excluir(livro.codigo)}>Excluir</button></td>
+      <td>{livro.titulo} <br></br><button className="btn btn-danger"onClick={() => excluir(livro.codigo,livro.codEditora)}>Excluir</button></td>
       <td><p>{livro.resumo}</p></td>
       <td id="editoras">{nomeEditora}</td>
       <td><ul>{livro.autores.map((item,key) => <li key={key}>{item}</li>)}</ul></td>
@@ -23,20 +23,24 @@ function LivroLista() {
   const [carregado, setCarregado] = useState(false);
 
   useEffect(() => {
-    const fetchLivros = async () => {
-      const livros = controleLivro.obterLivros();
-      setLivros(livros);
-      setCarregado(true);
-    };
-
-    fetchLivros();
+      controleLivro.obterLivros().then((livros) => {
+        setLivros(livros)
+      })
   }, [carregado]);
 
-  const excluir = (codigo) => {
-    controleLivro.excluir(codigo);
+  const excluir = async (codigo,index) => {
+    // escluindo do banco de dados
+    controleLivro.excluir(codigo).then(mensage => {
+      // excluindo da lista de livros
+      const novosLivros = [...livros]
+      novosLivros.splice(index - 1,1)
+      setLivros([...novosLivros])
+      setCarregado(true)
+    })
     setCarregado(false);
   };
 
+  // return
   return (
     <div>
       <main>
@@ -51,8 +55,8 @@ function LivroLista() {
             </tr>
           </thead>
           <tbody>
-            {livros.map((livro) => (
-              <LinhaLivro key={livro.codigo} livro={livro} excluir={excluir} />
+            {livros.map((livro,index) => (
+              <LinhaLivro key={index} livro={livro} excluir={excluir} />
             ))}
           </tbody>
         </table>

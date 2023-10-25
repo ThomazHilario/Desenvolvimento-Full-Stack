@@ -1,13 +1,13 @@
 // Livro.ts
 class Livro {
-    codigo: number;
+    codigo: String;
     codEditora: number;
     titulo: string;
     resumo: string;
     autores: string[];
   
     constructor(
-      codigo: number,
+      codigo: String,
       codEditora: number,
       titulo: string,
       resumo: string,
