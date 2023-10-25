@@ -21,16 +21,16 @@ const LinhaLivro: React.FC<LinhaLivroProps> = (props) => {
   return (
     <tr>
       {/* titulo do livro + button */}
-      <td>{props.livro.titulo} <button className="bg-danger border-0 rounded-1 mt-1 d-block"onClick={() => props.excluir(props.livro.codigo)}>Excluir</button></td>
+      <td className='p-3'>{props.livro.titulo} <button className="btn bg-danger text-white mt-1 d-block"onClick={() => props.excluir(props.livro.codigo)}>Excluir</button></td>
 
       {/* resumo do livro */}
-      <td><p>{props.livro.resumo}</p></td>
+      <td className='p-3'><p>{props.livro.resumo}</p></td>
 
       {/* Editorado livro */}
-      <td id="editoras">{nomeEditora}</td>
+      <td id="editoras" className='text-center p-3'>{nomeEditora}</td>
 
       {/* Autores do livro */}
-      <td><ul><li>{props.livro.autores}</li></ul></td>
+      <td className='p-3'><ul>{props.livro.autores.map((item,idx) => <li key={idx}>{item}</li>)}</ul></td>
     </tr>
   );
   };

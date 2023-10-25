@@ -6,7 +6,6 @@
   padding: 6rem;
   min-height: 100vh;
 }
-
 .description {
   display: inherit;
   justify-content: inherit;
@@ -18,8 +17,9 @@
   font-family: var(--font-mono);
 }
 .hello th{
-  background-color: rgb(40, 40, 40);
+  background-color: rgb(53, 53, 53);
   color: white;
+  text-align: center;
 }
 .form{
   width: 50%;

@@ -62,26 +62,26 @@ const LivroLista: React.FC = () => {
       <Menu />
 
       {/* Main */}
-      <main className="mt-5">
+      <main className="mt-5 container">
 
         {/* h1 */}
         <h1 className={styles.title}>Lista de Livros</h1>
 
         {/* table */}
-        <table className="table">
+        <table className="table table-striped">
 
           {/* thead */}
           <thead>
             <tr className={styles.hello}>
-              <th>Código</th>
-              <th>Título</th>
-              <th>Autor</th>
-              <th>Ano de Publicação</th>
+              <th>Titulo</th>
+              <th>Resumo</th>
+              <th>Editora</th>
+              <th>Autores</th>
             </tr>
           </thead>
 
           {/* tbody */}
-          <tbody>
+          <tbody className={styles.zebra}>
             {/* Percorrendo cada livro e listando */}
             {livros.map((livro) => (
               <LinhaLivro key={livro.codigo} livro={livro} excluir={excluir} />
