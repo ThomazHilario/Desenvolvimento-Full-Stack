@@ -5,9 +5,10 @@ const Livro = require('../modelo/livro-schema')
 const express = require('express')
 const app = express()
 app.use(express.json())
+var router = express.Router()
 
 // pegando os livros
-app.get('/', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
       const livros = await obterLivros();
       res.json(livros);
@@ -17,7 +18,7 @@ app.get('/', async (req, res) => {
 });
 
 // incluindo livro
-app.post('/', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         const novoLivro = req.body
         const livroInserido = incluir(novoLivro)
@@ -28,7 +29,7 @@ app.post('/', async (req, res) => {
 });
 
 // excluindo livro
-app.delete('/:codigo', async (req, res) => {
+router.delete('/:codigo', async (req, res) => {
     const codigoLivro = req.params.codigo;
     try {
       await excluir(codigoLivro);
@@ -39,4 +40,4 @@ app.delete('/:codigo', async (req, res) => {
 });
 
 
-module.exports = app;
+module.exports = router;

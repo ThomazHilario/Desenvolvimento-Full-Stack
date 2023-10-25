@@ -6,15 +6,15 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
+// livro Router
+var livroRouter = require('./routes/livro');
 
 const cors = require('cors')
 var app = express();
 app.use(cors());
 
 
-// livro Router
-const livroRouter = require('./routes/livro');
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
