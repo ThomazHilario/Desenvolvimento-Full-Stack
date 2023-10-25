@@ -1,15 +1,18 @@
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Menu from '../../componentes/menu';
 import ControleEditora from '../../classes/controle/controleEditora';
+import ControleLivros from '../../classes/controle/controleLivro'
 import styles from '../styles/Home.module.css';
-import { useRouter } from 'next/router';
+
 
 // instanciando a classe
 const controleEditora = new ControleEditora();
 
-// url
-const baseURL = 'http://localhost:3000/api/livros';
+// instanciando controleLivros
+const controleLivros = new ControleLivros();
+
 // Componente LivroDados
 const LivroDados: React.FC = () => {
   // states
@@ -35,40 +38,27 @@ const LivroDados: React.FC = () => {
   const incluir = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    // Estrutura do livro a ser seguida, o codigo tem que ser null
     const livro = {
-      codigo: 0,
+      codigo: null,
       titulo,
       resumo,
       autores: autores.split('\n'),
       codEditora,
     };
 
-    //request
-    const sucesso = await incluirLivro(livro);
+    // incluindo o livro pela requisicao
+    controleLivros.incluir(livro).then((sucesso)=>{
+      if (sucesso) {
+        router.push('/LivroLista');
+      }
+    })
 
     // caso a mensaagem retorne sucesso
-    if (sucesso) {
-      router.push('/LivroLista');
-    }
+    
   };
 
-  // incluindo livro
-  const incluirLivro = async (livro: any) => {
-    try {
-      const response = await fetch(baseURL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(livro),
-      });
-
-      return response.ok;
-    } catch (error) {
-      console.error('Erro ao incluir o livro:', error);
-      return false;
-    }
-  };
+ 
 
   // return
   return (

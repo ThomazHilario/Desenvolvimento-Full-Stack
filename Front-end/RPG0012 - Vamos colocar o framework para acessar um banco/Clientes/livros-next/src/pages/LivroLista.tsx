@@ -4,50 +4,29 @@ import Menu  from '../../componentes/menu';
 import  Livro  from '../../classes/modelo/livro';
 import LinhaLivro  from '../../componentes/linhaLivro';
 import styles from '../styles/Home.module.css';
+import ControleLivros from '../../classes/controle/controleLivro'
 
-
-// url
-const baseURL = 'http://localhost:3000/api/livros';
+// instanciando classe
+const controleLivros = new ControleLivros()
 
 // url componente LivroLista
 const LivroLista: React.FC = () => {
   // States
-  const [livros, setLivros] = useState<Array<Livro>>([]);
-  const [carregado, setCarregado] = useState<boolean>(false);
+  const [livros, setLivros] = useState([]);
+  const [carregado, setCarregado] = useState(false);
 
-  // Function obterLivros
-  const obterLivros = async () => {
-    try {
-      const response = await fetch(baseURL);
-      const data = await response.json();
-      setLivros(data);
-    } catch (error) {
-      console.error('Erro ao obter a lista de livros:', error);
-    }
-  };
-
-  //function exluirLivro - request
-  const excluirLivro = async (codigo: number) => {
-    try {
-      const response = await fetch(`${baseURL}/${codigo}`, { method: 'DELETE' });
-      return response.ok;
-    } catch (error) {
-      console.error(`Erro ao excluir o livro com código ${codigo}:`, error);
-      return false;
-    }
-  };
-
+ 
   // userEffect
   useEffect(() => {
-    obterLivros().then(() => setCarregado(true));
+    controleLivros.obterLivros().then((livros)=> setLivros(livros))
   }, [carregado]);
 
   // function excluir
-  const excluir = async (codigo: number) => {
-    const sucesso = await excluirLivro(codigo);
-    if (sucesso) {
-      setCarregado(false);
-    }
+  const excluir = (codigo:string) => {
+    controleLivros.excluir(codigo).then(() => {
+      setCarregado(true)
+    })
+    setCarregado(false)
   };
 
   // Componente
@@ -84,9 +63,11 @@ const LivroLista: React.FC = () => {
           {/* tbody */}
           <tbody>
             {/* Percorrendo cada livro e listando */}
-            {livros.map((livro) => (
-              <LinhaLivro key={livro.codigo} livro={livro} excluir={excluir} />
-            ))}
+            {livros.map((livro,index) => {
+              return(
+                <LinhaLivro key={index} livro={livro} excluir={() => excluir(livro.codigo)} />
+              )
+            })}
           </tbody>
         </table>
       </main>
