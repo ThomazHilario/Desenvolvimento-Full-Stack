@@ -43,11 +43,11 @@ const LivroDados = () => {
   
     return (
         // main
-      <main >
+      <main className='container'>
         <h2>Incluir Livro</h2>
 
         {/* formulario */}
-        <form onSubmit={incluir} className='w-50'>
+        <form onSubmit={incluir} className='w-20'>
 
             {/* input */}
           <div className="form-group">
@@ -82,7 +82,7 @@ const LivroDados = () => {
           </div>
 
           {/* button incluir */}
-            <button className=" btn btn-primary mt-2 py-0">Incluir</button>
+            <button className=" btn btn-primary mt-2 py-0">Adicionar</button>
         </form>
       </main>
     );

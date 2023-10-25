@@ -22,6 +22,7 @@ function LivroLista() {
   const [livros, setLivros] = useState([]);
   const [carregado, setCarregado] = useState(false);
 
+// pegando os livros e carregando na state
   useEffect(() => {
     const fetchLivros = async () => {
       const livros = controleLivro.obterLivros();
@@ -32,6 +33,7 @@ function LivroLista() {
     fetchLivros();
   }, [carregado]);
 
+  // excluir
   const excluir = (codigo) => {
     controleLivro.excluir(codigo);
     setCarregado(false);
@@ -39,9 +41,10 @@ function LivroLista() {
 
   return (
     <div>
-      <main>
+      <main className='container'>
         <h1>Catalogo de Livros</h1>
         <table>
+
           <thead>
             <tr className='bg-dark text-white'>
               <th>Título</th>
@@ -50,6 +53,7 @@ function LivroLista() {
               <th>Autor</th>
             </tr>
           </thead>
+          
           <tbody>
             {livros.map((livro) => (
               <LinhaLivro key={livro.codigo} livro={livro} excluir={excluir} />
