@@ -4,8 +4,8 @@ import ControleEditora from './controle/controleEditora';
 import ControleLivros from './controle/controleLivro';
 
 // Instanciando classes
-const controleEditora = new ControleEditora
-const controleLivro = new ControleLivros
+const controleEditora = new ControleEditora()
+const controleLivro = new ControleLivros()
 
 const LivroDados = () => {
     const [titulo, setTitulo] = useState('');
