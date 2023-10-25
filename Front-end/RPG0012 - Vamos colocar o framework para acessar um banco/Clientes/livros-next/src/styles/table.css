@@ -1,0 +1,19 @@
+table{
+    border-collapse: collapse;
+}
+
+table > thead > tr > th{
+    padding: 20px;
+    text-align: center;
+}
+/* tbody */
+tbody > :nth-child(odd){
+    background-color: rgb(215, 213, 213);
+}
+td{
+    padding: 20px;
+    text-align: justify;
+}
+#editoras{
+    text-align: center;
+}
