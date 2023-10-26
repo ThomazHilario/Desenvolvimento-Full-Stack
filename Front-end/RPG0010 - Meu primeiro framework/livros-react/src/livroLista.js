@@ -24,7 +24,7 @@ function LivroLista() {
 
 // pegando os livros e carregando na state
   useEffect(() => {
-    const fetchLivros = async () => {
+    const fetchLivros = () => {
       const livros = controleLivro.obterLivros();
       setLivros(livros);
       setCarregado(true);
