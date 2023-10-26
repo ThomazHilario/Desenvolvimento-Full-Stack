@@ -5,15 +5,15 @@ import ControleEditora from './controle/controleEditora';
 const controleLivro = new ControleLivros();
 const controleEditora = new ControleEditora();
 
-function LinhaLivro({ livro, excluir }) {
-  const nomeEditora = controleEditora.getNomeEditora(livro.codEditora);
+function LinhaLivro(props) {
+  const nomeEditora = controleEditora.getNomeEditora(props.livro.codEditora);
 
   return (
     <tr>
-      <td>{livro.titulo} <br></br><button className="btn btn-danger"onClick={() => excluir(livro.codigo)}>Excluir</button></td>
-      <td><p>{livro.resumo}</p></td>
+      <td>{props.livro.titulo} <br></br><button className="btn btn-danger"onClick={() => props.excluir(props.livro.codigo)}>Excluir</button></td>
+      <td><p>{props.livro.resumo}</p></td>
       <td id="editoras">{nomeEditora}</td>
-      <td><ul>{livro.autores.map((item,key) => <li key={key}>{item}</li>)}</ul></td>
+      <td><ul>{props.livro.autores.map((item,key) => <li key={key}>{item}</li>)}</ul></td>
     </tr>
   );
 }

@@ -12,9 +12,9 @@ class ControleEditora {
     return editoras;
   }
 
-  getNomeEditora(codEditora: number): string {
-    const editora = editoras.find((e) => e.codEditora === codEditora);
-    return editora ? editora.nome : '';
+  getNomeEditora(codEditora: number){
+    const editora = editoras.filter((e) => e.codEditora === codEditora);
+    return editora.map(item => item.nome)
   }
 }
 
