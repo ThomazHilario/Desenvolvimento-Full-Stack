@@ -44,4 +44,11 @@ public class Pessoa{
     public String getCpf(){
         return this.cpf;
     }
+
+    public void informationUser(){
+        System.out.println("Nome: " + getName());
+        System.out.println("Idade: " + getAge() + " anos");
+        System.out.println("Data de nascimento: " + getDataNascimento());
+        System.out.println("Cpf: " + getCpf());
+    }
 }

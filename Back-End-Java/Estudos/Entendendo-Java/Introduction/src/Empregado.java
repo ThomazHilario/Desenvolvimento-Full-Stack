@@ -8,7 +8,11 @@ public class Empregado extends Pessoa{
 
     protected double gerarMatricula(){
         double randomNumber = Math.random();
-        
+
         return this.matricula = randomNumber;
+    }
+
+    public double buscarMatricula(){
+        return matricula;
     }
 }
