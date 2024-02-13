@@ -6,7 +6,9 @@ public class Principal {
 
         aluno.setDataNascimento("15/03/2005");
         aluno.setCpf("123-456-789-10");
+        aluno.gerarMatricula();
 
         aluno.informationUser();
+        System.out.println("Matricula: " + aluno.buscarMatricula());
     }
 }
