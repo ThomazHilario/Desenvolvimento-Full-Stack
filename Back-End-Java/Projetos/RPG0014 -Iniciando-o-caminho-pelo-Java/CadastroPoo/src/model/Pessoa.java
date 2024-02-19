@@ -1,6 +1,6 @@
 package model;
 
-public class Pessoa {
+public class Pessoa{
     // atributos
     private Integer id;
     private String nome;
