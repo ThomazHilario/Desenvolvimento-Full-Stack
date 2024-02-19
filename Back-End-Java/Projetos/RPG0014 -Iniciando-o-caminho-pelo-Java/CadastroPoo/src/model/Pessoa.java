@@ -2,21 +2,21 @@ package model;
 
 public class Pessoa{
     // atributos
-    private Integer id;
+    private int id;
     private String nome;
 
     // Constructor
-    Pessoa(Integer id, String nome){
+    Pessoa(int id, String nome){
         this.id = id;
         this.nome = nome;
     }
 
 
-    public void setId(Integer id){
+    public void setId(int id){
         this.id = id;
     }
 
-    public Integer getId(){
+    public int getId(){
         return this.id;
     }
 

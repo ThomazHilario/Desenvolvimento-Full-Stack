@@ -7,7 +7,7 @@ public class PessoaJuridica extends Pessoa implements Serializable{
     private String cnpj;
 
     // Constructor
-    PessoaJuridica(String nome, Integer id, String cnpj){
+    PessoaJuridica(String nome, int id, String cnpj){
         super(id, nome);
 
         this.cnpj = cnpj;

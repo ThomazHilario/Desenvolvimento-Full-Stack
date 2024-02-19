@@ -5,10 +5,10 @@ import java.io.Serializable;
 public class PessoaFisica extends Pessoa implements Serializable{
     // Atributos
     private String cpf;
-    private Integer idade;
+    private int idade;
 
     // Constructor
-    PessoaFisica(String nome, Integer id, String cpf, Integer idade){
+    PessoaFisica(String nome, int id, String cpf, int idade){
         super(id, nome);
 
         this.cpf = cpf;
@@ -23,7 +23,7 @@ public class PessoaFisica extends Pessoa implements Serializable{
         return this.cpf;
     }
 
-    public void setIdade(Integer idade){
+    public void setIdade(int idade){
         this.idade = idade;
     }
 
