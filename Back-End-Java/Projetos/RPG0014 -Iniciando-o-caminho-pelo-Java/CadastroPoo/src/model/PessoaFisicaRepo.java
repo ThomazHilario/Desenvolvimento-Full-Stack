@@ -9,7 +9,14 @@ public class PessoaFisicaRepo {
         pessoaFisicas.add(pessoaFisica);
     }
 
-    public void alterar(){}
+    public void alterar(int id, PessoaFisica pessoaFisica){
+        for(int i = 0; i < pessoaFisicas.size(); i++){
+            if(pessoaFisicas.get(i).getId() == id){
+                pessoaFisicas.set(id, pessoaFisica);
+                break;
+            }
+        }
+    }
 
     public void excluir(int id){
         for(PessoaFisica pessoa : pessoaFisicas){
