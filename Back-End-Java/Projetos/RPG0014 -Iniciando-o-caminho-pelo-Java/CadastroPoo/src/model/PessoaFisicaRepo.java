@@ -1,6 +1,12 @@
 package model;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class PessoaFisicaRepo {
     private ArrayList<PessoaFisica> pessoaFisicas = new ArrayList<>();
@@ -37,6 +43,23 @@ public class PessoaFisicaRepo {
 
     public ArrayList<PessoaFisica> obterTodos(){
         return pessoaFisicas;
+    }
+
+    public void persistir(String nomeArquivo) throws IOException {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(nomeArquivo))) {
+            out.writeObject(pessoaFisicas);
+        }
+    }
+
+    public void recuperar(String nomeArquivo) throws IOException, ClassNotFoundException {
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(nomeArquivo))) {
+            Object obj = in.readObject();
+            if (obj instanceof ArrayList<?>) {
+                pessoaFisicas = (ArrayList<PessoaFisica>) Arrays.asList(((PessoaFisica[]) obj));          
+            } else {
+                throw new IOException("Arquivo não contém uma lista de pessoas físicas");
+            }
+        }
     }
 
     public static void main(String args[]){
