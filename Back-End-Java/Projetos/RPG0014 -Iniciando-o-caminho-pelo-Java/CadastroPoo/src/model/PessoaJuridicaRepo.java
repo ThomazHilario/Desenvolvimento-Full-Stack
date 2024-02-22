@@ -1,10 +1,14 @@
 package model;
 
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class PessoaJuridicaRepo {
     private ArrayList<PessoaJuridica> pessoasJuridicas = new ArrayList<>();
@@ -56,4 +60,14 @@ public class PessoaJuridicaRepo {
     }
 
     // Recuperar dados
+    public void recuperar(String nome_do_arquivo) throws IOException, ClassNotFoundException{
+        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(nome_do_arquivo))){
+            Object obj = in.readObject();
+            if(obj instanceof ArrayList<?>){
+                pessoasJuridicas = (ArrayList<PessoaJuridica>) Arrays.asList(((PessoaJuridica[]) obj));
+            } else{
+                throw new IOException("Não foi possivel encontrar o arquivo.");
+            }
+        }
+    }
 }
