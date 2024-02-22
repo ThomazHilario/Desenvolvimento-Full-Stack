@@ -6,5 +6,7 @@ public class CadastroPoo {
     public static void main(String args[]){
         Scanner scanner = new Scanner(System.in);
         PessoaFisicaRepo repoFisica = new PessoaFisicaRepo();
+        PessoaJuridicaRepo repoJuridica = new PessoaJuridicaRepo();
+        
     }
 }
