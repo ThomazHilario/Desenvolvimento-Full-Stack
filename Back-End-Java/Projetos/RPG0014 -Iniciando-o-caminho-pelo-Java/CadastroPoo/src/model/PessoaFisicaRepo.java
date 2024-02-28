@@ -28,6 +28,7 @@ public class PessoaFisicaRepo {
         for(PessoaFisica pessoa : pessoaFisicas){
             if(pessoa.getId() == id){
                 pessoaFisicas.remove(id);
+                break;
             }
         }
     }

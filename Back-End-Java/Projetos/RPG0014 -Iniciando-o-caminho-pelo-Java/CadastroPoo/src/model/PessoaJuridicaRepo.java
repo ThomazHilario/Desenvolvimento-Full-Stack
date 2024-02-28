@@ -31,6 +31,7 @@ public class PessoaJuridicaRepo {
         for(PessoaJuridica pessoa : pessoasJuridicas){
             if(pessoa.getId() == id){
                 pessoasJuridicas.remove(id);
+                break;
             }
         }
     }

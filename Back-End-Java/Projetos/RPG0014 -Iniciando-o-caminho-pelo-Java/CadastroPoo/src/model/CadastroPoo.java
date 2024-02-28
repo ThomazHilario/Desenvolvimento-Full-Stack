@@ -73,7 +73,7 @@ public class CadastroPoo {
                 break;
 
                 case 2:
-                    System.out.println("F - Pessooa Fisica | J - Pessoa Juridica");
+                    System.out.println("F - Pessoa Fisica | J - Pessoa Juridica");
                     String tipoPessoa = sc.nextLine();
 
                     if(tipoPessoa.equalsIgnoreCase("f") == true){
@@ -104,7 +104,7 @@ public class CadastroPoo {
                 break;
 
                 case 3:
-                    System.out.println("F - Pessooa Fisica | J - Pessoa Juridica");
+                    System.out.println("F - Pessoa Fisica | J - Pessoa Juridica");
                     String excluirPessoa = sc.nextLine();
 
                     if(excluirPessoa.equalsIgnoreCase("f") == true){
@@ -128,7 +128,7 @@ public class CadastroPoo {
                 break;
 
                 case 4:
-                    System.out.println("F - Pessooa Fisica | J - Pessoa Juridica");
+                    System.out.println("F - Pessoa Fisica | J - Pessoa Juridica");
                     String obterPessoa = sc.nextLine();
 
                     if(obterPessoa.equalsIgnoreCase("f") == true){
@@ -152,6 +152,28 @@ public class CadastroPoo {
 
                     } else{
                         System.out.println("Ocorreu algum erro!");
+                    }
+                break;
+
+                case 5:
+                    System.out.println("F - Pessoa Fisica | J - Pessoa Juridica");
+                    String obterTodos = sc.nextLine();
+
+                    if(obterTodos.equalsIgnoreCase("f")){
+                        for(PessoaFisica pessoa : repoFisica.obterTodos()){
+                            System.out.println("Id: " + pessoa.getId());
+                            System.out.println("Nome: " + pessoa.getName());
+                            System.out.println("Idade: " + pessoa.getIdade());
+                            System.out.println("Cpf: " + pessoa.getCpf());
+                            System.out.println("------------------------");
+                        };
+                    } else if(obterTodos.equalsIgnoreCase("j")){
+                        for(PessoaJuridica pessoa : repoJuridica.obterTodos()){
+                            System.out.println("Id: " + pessoa.getId());
+                            System.out.println("Nome: " + pessoa.getName());
+                            System.out.println("Cnpj: " + pessoa.getCnpf());
+                            System.out.println("------------------------");
+                        };
                     }
                 break;
             }
