@@ -52,9 +52,16 @@ public class PessoaJuridicaRepo {
     }
 
     // Persistir dados
-    public void persistir(String nome_do_arquivo) throws IOException{
-        try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(nome_do_arquivo))){
-            out.writeObject(pessoasJuridicas);
+    public void persistir(String preFixo) {
+        try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(preFixo + "juridica"))){
+            if(preFixo != ""){
+                out.writeObject(pessoasJuridicas);
+            }else{
+                throw new IOException("Erro ao persistir os dados");
+            }
+            
+        } catch(IOException e){
+            System.err.println(e.getMessage());
         }
     }
 

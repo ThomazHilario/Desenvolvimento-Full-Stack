@@ -99,6 +99,24 @@ public class CadastroPoo {
                         sc.nextLine();
 
                         repoFisica.alterar(idUser, new PessoaFisica(nomeUser, idUser, cpfUser, idadeUser));
+                    } else if(tipoPessoa.equalsIgnoreCase("j") == true){
+                        System.out.println("O id do usuario que vc quer editar:");
+                        int idUser = sc.nextInt();
+                        sc.nextLine();
+
+                        // Mostrando dados atuais
+                        System.out.println("Dados atuais:");
+                        System.out.println(repoJuridica.obter(idUser).getName());
+                        System.out.println(repoJuridica.obter(idUser).getCnpf());
+                        
+                        // Insira os novos dados
+                        System.out.println("Nome do usuario:");
+                        String nomeUser = sc.nextLine();
+
+                        System.out.println("Cpf do usuario:");
+                        String cnpjUser = sc.nextLine();
+
+                        repoJuridica.alterar(idUser, new PessoaJuridica(nomeUser, idUser, cnpjUser));
                     }
 
                 break;
@@ -174,6 +192,22 @@ public class CadastroPoo {
                             System.out.println("Cnpj: " + pessoa.getCnpf());
                             System.out.println("------------------------");
                         };
+                    }
+                break;
+                case 6:
+                    System.out.println("F - Pessoa Fisica | J - Pessoa Juridica");
+                    String salvar = sc.nextLine();
+
+                    if(salvar.equalsIgnoreCase("f") == true){
+                        System.out.println("Digite o nome do arquivo");
+                        String preFixo = sc.nextLine();
+
+                        repoFisica.persistir(preFixo);
+                    } else if(salvar.equalsIgnoreCase("j")){
+                        System.out.println("Digite o nome do arquivo");
+                        String preFixo = sc.nextLine();
+
+                        repoJuridica.persistir(preFixo);
                     }
                 break;
             }

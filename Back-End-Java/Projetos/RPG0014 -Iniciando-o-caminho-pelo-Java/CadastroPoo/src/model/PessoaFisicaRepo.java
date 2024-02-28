@@ -46,9 +46,13 @@ public class PessoaFisicaRepo {
         return pessoaFisicas;
     }
 
-    public void persistir(String nomeArquivo) throws IOException {
-        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(nomeArquivo))) {
+    public void persistir(String preFixo){
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(preFixo + "fisica"))) {
             out.writeObject(pessoaFisicas);
+        } catch (IOException e) {
+            // Lançar uma nova exceção com uma mensagem personalizada
+            
+            System.err.println("Erro ao persistir os dados: " + e.getMessage());
         }
     }
 
@@ -60,6 +64,10 @@ public class PessoaFisicaRepo {
             } else {
                 throw new IOException("Arquivo não contém uma lista de pessoas físicas");
             }
+        } catch(IOException e){
+            throw e;
+        } catch(ClassNotFoundException e){
+            throw e;
         }
     }
 
