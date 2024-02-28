@@ -72,9 +72,87 @@ public class CadastroPoo {
                     }
                 break;
 
+                case 2:
+                    System.out.println("F - Pessooa Fisica | J - Pessoa Juridica");
+                    String tipoPessoa = sc.nextLine();
+
+                    if(tipoPessoa.equalsIgnoreCase("f") == true){
+                        System.out.println("O id do usuario que vc quer editar:");
+                        int idUser = sc.nextInt();
+                        sc.nextLine();
+
+                        // Mostrando dados atuais
+                        System.out.println("Dados atuais:");
+                        System.out.println(repoFisica.obter(idUser).getName());
+                        System.out.println(repoFisica.obter(idUser).getIdade());
+                        System.out.println(repoFisica.obter(idUser).getCpf());
+                        
+                        // Insira os novos dados
+                        System.out.println("Nome do usuario:");
+                        String nomeUser = sc.nextLine();
+
+                        System.out.println("Cpf do usuario:");
+                        String cpfUser = sc.nextLine();
+
+                        System.out.println("Idade do usuario:");
+                        int idadeUser = sc.nextInt();
+                        sc.nextLine();
+
+                        repoFisica.alterar(idUser, new PessoaFisica(nomeUser, idUser, cpfUser, idadeUser));
+                    }
+
+                break;
+
+                case 3:
+                    System.out.println("F - Pessooa Fisica | J - Pessoa Juridica");
+                    String excluirPessoa = sc.nextLine();
+
+                    if(excluirPessoa.equalsIgnoreCase("f") == true){
+                        System.out.println("Digite o id da pessoa que deseja excluir: ");
+                        int id = sc.nextInt();
+                        sc.nextLine();
+
+                        // Excluindo pessoa Fisica
+                        repoFisica.excluir(id);
+
+                    } else if(excluirPessoa.equalsIgnoreCase("j") == true){
+                        System.out.println("Digite o id da pessoa que deseja excluir: ");
+                        int id = sc.nextInt();
+                        sc.nextLine();
+
+                        // Excluindo pessoa juridica
+                        repoJuridica.excluir(id);
+                    } else{
+                        System.out.println("Ocorreu algum erro!");
+                    }
+                break;
+
                 case 4:
                     System.out.println("F - Pessooa Fisica | J - Pessoa Juridica");
+                    String obterPessoa = sc.nextLine();
 
+                    if(obterPessoa.equalsIgnoreCase("f") == true){
+                        System.out.println("Digite o id da pessoa que deseja obter: ");
+                        int id = sc.nextInt();
+                        sc.nextLine();
+
+                        // Exibindo dados
+                        System.out.println("Nome: " + repoFisica.obter(id).getName());
+                        System.out.println("Idade: " + repoFisica.obter(id).getIdade());
+                        System.out.println("Cpf: " + repoFisica.obter(id).getCpf());
+
+                    } else if(obterPessoa.equalsIgnoreCase("j") == true){
+                        System.out.println("Digite o id da pessoa que deseja obter: ");
+                        int id = sc.nextInt();
+                        sc.nextLine();
+
+                        // Exibindo dados
+                        System.out.println("Nome: " + repoJuridica.obter(id).getName());
+                        System.out.println("Cnpj: " + repoJuridica.obter(id).getCnpf());
+
+                    } else{
+                        System.out.println("Ocorreu algum erro!");
+                    }
                 break;
             }
 
