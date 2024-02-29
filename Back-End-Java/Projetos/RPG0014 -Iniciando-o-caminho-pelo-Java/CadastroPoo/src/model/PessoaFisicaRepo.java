@@ -24,9 +24,9 @@ public class PessoaFisicaRepo {
     }
 
     public void excluir(int id){
-        for(PessoaFisica pessoa : pessoaFisicas){
-            if(pessoa.getId() == id){
-                pessoaFisicas.remove(id);
+        for(int i = 0; i < pessoaFisicas.size(); i++){
+            if(pessoaFisicas.get(i).getId() == id){
+                pessoaFisicas.remove(i);
                 break;
             }
         }
