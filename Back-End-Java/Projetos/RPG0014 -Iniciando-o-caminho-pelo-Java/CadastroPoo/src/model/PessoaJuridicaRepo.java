@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class PessoaJuridicaRepo {
     private ArrayList<PessoaJuridica> pessoasJuridicas = new ArrayList<>();
@@ -28,9 +27,9 @@ public class PessoaJuridicaRepo {
 
     // Excluir
     public void excluir(int id){
-        for(PessoaJuridica pessoa : pessoasJuridicas){
-            if(pessoa.getId() == id){
-                pessoasJuridicas.remove(id);
+        for(int i = 0; i < pessoasJuridicas.size(); i++){
+            if(pessoasJuridicas.get(i).getId() == id){
+                pessoasJuridicas.remove(i);
                 break;
             }
         }
