@@ -64,8 +64,6 @@ public class PessoaFisicaRepo {
             } else {
                 throw new IOException("Arquivo não contém uma lista de pessoas físicas");
             }
-
-            System.out.println(pessoaFisicas.get(0).getName());
         } catch(IOException e){
             System.err.println(e.getMessage());
         } catch(ClassNotFoundException e){

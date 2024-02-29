@@ -66,11 +66,12 @@ public class PessoaJuridicaRepo {
     }
 
     // Recuperar dados
+    @SuppressWarnings("unchecked")
     public void recuperar(String nome_do_arquivo) {
-        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(nome_do_arquivo))){
+        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(nome_do_arquivo + "juridica"))){
             Object obj = in.readObject();
             if(obj instanceof ArrayList<?>){
-                pessoasJuridicas = (ArrayList<PessoaJuridica>) Arrays.asList(((PessoaJuridica[]) obj));
+                pessoasJuridicas = (ArrayList<PessoaJuridica>) obj;
             } else{
                 throw new IOException("Não foi possivel encontrar o arquivo.");
             }
