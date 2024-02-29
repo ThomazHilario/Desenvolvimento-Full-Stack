@@ -1,9 +1,17 @@
 package model;
 
-public class Pessoa{
+import java.io.Serializable;
+
+public class Pessoa implements Serializable{
     // atributos
     private int id;
     private String nome;
+
+    //Construtor padrao
+    public Pessoa(){
+        this.nome = "";
+        this.id = 0;
+    }
 
     // Constructor
     Pessoa(int id, String nome){

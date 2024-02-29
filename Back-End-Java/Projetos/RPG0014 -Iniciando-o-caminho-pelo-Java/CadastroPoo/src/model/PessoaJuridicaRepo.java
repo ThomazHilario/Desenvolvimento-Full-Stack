@@ -66,7 +66,7 @@ public class PessoaJuridicaRepo {
     }
 
     // Recuperar dados
-    public void recuperar(String nome_do_arquivo) throws IOException, ClassNotFoundException{
+    public void recuperar(String nome_do_arquivo) {
         try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(nome_do_arquivo))){
             Object obj = in.readObject();
             if(obj instanceof ArrayList<?>){
@@ -74,6 +74,10 @@ public class PessoaJuridicaRepo {
             } else{
                 throw new IOException("Não foi possivel encontrar o arquivo.");
             }
+        }catch(IOException e){
+            System.err.println(e.getMessage());
+        } catch(ClassNotFoundException e){
+            System.err.println(e.getMessage());
         }
     }
 }

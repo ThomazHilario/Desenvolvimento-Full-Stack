@@ -1,19 +1,19 @@
 package model;
 
-import java.io.Serializable;
-
-public class PessoaFisica extends Pessoa implements Serializable{
+public class PessoaFisica extends Pessoa{
     // Atributos
     private String cpf;
     private int idade;
 
     // Constructor
-    PessoaFisica(String nome, int id, String cpf, int idade){
+    public PessoaFisica(String nome, int id, String cpf, int idade){
         super(id, nome);
 
         this.cpf = cpf;
         this.idade = idade;
     }
+
+    
 
     public void setCpf(String cpf){
         this.cpf = cpf;

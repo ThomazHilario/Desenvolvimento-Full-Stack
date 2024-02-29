@@ -23,6 +23,7 @@ public class CadastroPoo {
             System.out.println("5 - ObterTodos");
             System.out.println("6 - Persistir");
             System.out.println("7 - Recuperar");
+            System.out.println("0 - Sair do programa");
 
             opcao = sc.nextInt();
             sc.nextLine();
@@ -194,6 +195,7 @@ public class CadastroPoo {
                         };
                     }
                 break;
+
                 case 6:
                     System.out.println("F - Pessoa Fisica | J - Pessoa Juridica");
                     String salvar = sc.nextLine();
@@ -208,6 +210,23 @@ public class CadastroPoo {
                         String preFixo = sc.nextLine();
 
                         repoJuridica.persistir(preFixo);
+                    }
+                break;
+
+                case 7:
+                    System.out.println("F - Pessoa Fisica | J - Pessoa Juridica");
+                    String recuperarPessoa = sc.nextLine();
+
+                    if(recuperarPessoa.equalsIgnoreCase("f") == true){
+                        System.out.println("Digite o prefixo do arquivo: ");
+                        String prefixo = sc.nextLine();
+
+                        repoFisica.recuperar(prefixo);
+                    } else if(recuperarPessoa.equalsIgnoreCase("j") == true){
+                        System.out.println("Digite o prefixo do arquivo: ");
+                        String prefixo = sc.nextLine();
+
+                        repoJuridica.recuperar(prefixo);
                     }
                 break;
             }

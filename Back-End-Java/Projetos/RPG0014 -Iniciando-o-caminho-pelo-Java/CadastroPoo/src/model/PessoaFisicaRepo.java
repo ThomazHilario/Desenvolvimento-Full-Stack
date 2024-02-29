@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class PessoaFisicaRepo {
     private ArrayList<PessoaFisica> pessoaFisicas = new ArrayList<>();
@@ -18,7 +17,7 @@ public class PessoaFisicaRepo {
     public void alterar(int id, PessoaFisica pessoaFisica){
         for(int i = 0; i < pessoaFisicas.size(); i++){
             if(pessoaFisicas.get(i).getId() == id){
-                pessoaFisicas.set(id, pessoaFisica);
+                pessoaFisicas.set(i, pessoaFisica);
                 break;
             }
         }
@@ -56,18 +55,21 @@ public class PessoaFisicaRepo {
         }
     }
 
-    public void recuperar(String nomeArquivo) throws IOException, ClassNotFoundException {
-        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(nomeArquivo))) {
+    @SuppressWarnings("unchecked")
+    public void recuperar(String nomeArquivo) {
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(nomeArquivo + "fisica"))) {
             Object obj = in.readObject();
             if (obj instanceof ArrayList<?>) {
-                pessoaFisicas = (ArrayList<PessoaFisica>) Arrays.asList(((PessoaFisica[]) obj));          
+                pessoaFisicas = (ArrayList<PessoaFisica>) obj;
             } else {
                 throw new IOException("Arquivo não contém uma lista de pessoas físicas");
             }
+
+            System.out.println(pessoaFisicas.get(0).getName());
         } catch(IOException e){
-            throw e;
+            System.err.println(e.getMessage());
         } catch(ClassNotFoundException e){
-            throw e;
+           System.err.println(e.getMessage());
         }
     }
 
