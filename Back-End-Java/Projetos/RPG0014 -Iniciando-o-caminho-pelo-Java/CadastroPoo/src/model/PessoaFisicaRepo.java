@@ -46,7 +46,7 @@ public class PessoaFisicaRepo {
     }
 
     public void persistir(String preFixo){
-        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(preFixo + "fisica"))) {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("./Back-End-Java/Projetos" + preFixo + "fisica"))) {
             out.writeObject(pessoaFisicas);
         } catch (IOException e) {
             // Lançar uma nova exceção com uma mensagem personalizada
@@ -56,8 +56,8 @@ public class PessoaFisicaRepo {
     }
 
     @SuppressWarnings("unchecked")
-    public void recuperar(String nomeArquivo) {
-        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(nomeArquivo + "fisica"))) {
+    public void recuperar(String preFixo) {
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("./Back-End-Java/Projetos"+ preFixo + "fisica"))) {
             Object obj = in.readObject();
             if (obj instanceof ArrayList<?>) {
                 pessoaFisicas = (ArrayList<PessoaFisica>) obj;
@@ -71,12 +71,5 @@ public class PessoaFisicaRepo {
         }
     }
 
-    public static void main(String args[]){
-        PessoaFisicaRepo p1 = new PessoaFisicaRepo();
-        p1.inserir(new PessoaFisica("Thomazh",0,"123-456-789-01",19));
-        p1.inserir(new PessoaFisica("Linconl",123,"123-456-789-01",18));
-        p1.inserir(new PessoaFisica("Luiz",666,"123-456-789-01",20));
 
-        System.out.println(p1.obterTodos());
-    }
 }

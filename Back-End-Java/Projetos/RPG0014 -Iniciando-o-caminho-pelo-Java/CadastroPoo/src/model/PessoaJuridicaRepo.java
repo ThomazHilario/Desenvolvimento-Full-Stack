@@ -52,7 +52,7 @@ public class PessoaJuridicaRepo {
 
     // Persistir dados
     public void persistir(String preFixo) {
-        try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(preFixo + "juridica"))){
+        try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("./Back-End-Java/Projetos" + preFixo + "juridica"))){
             if(preFixo != ""){
                 out.writeObject(pessoasJuridicas);
             }else{
@@ -66,8 +66,8 @@ public class PessoaJuridicaRepo {
 
     // Recuperar dados
     @SuppressWarnings("unchecked")
-    public void recuperar(String nome_do_arquivo) {
-        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(nome_do_arquivo + "juridica"))){
+    public void recuperar(String preFixo) {
+        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("./Back-End-Java/Projetos" + preFixo + "juridica"))){
             Object obj = in.readObject();
             if(obj instanceof ArrayList<?>){
                 pessoasJuridicas = (ArrayList<PessoaJuridica>) obj;
