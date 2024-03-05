@@ -92,12 +92,12 @@ public class CadastroPoo {
                         System.out.println("Nome do usuario:");
                         String nomeUser = sc.nextLine();
 
-                        System.out.println("Cpf do usuario:");
-                        String cpfUser = sc.nextLine();
-
                         System.out.println("Idade do usuario:");
                         int idadeUser = sc.nextInt();
                         sc.nextLine();
+
+                        System.out.println("Cpf do usuario:");
+                        String cpfUser = sc.nextLine();
 
                         repoFisica.alterar(idUser, new PessoaFisica(nomeUser, idUser, cpfUser, idadeUser));
                     } else if(tipoPessoa.equalsIgnoreCase("j") == true){
@@ -114,7 +114,7 @@ public class CadastroPoo {
                         System.out.println("Nome do usuario:");
                         String nomeUser = sc.nextLine();
 
-                        System.out.println("Cpf do usuario:");
+                        System.out.println("Cnpj do usuario:");
                         String cnpjUser = sc.nextLine();
 
                         repoJuridica.alterar(idUser, new PessoaJuridica(nomeUser, idUser, cnpjUser));
