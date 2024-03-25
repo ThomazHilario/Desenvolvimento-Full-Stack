@@ -1,5 +1,13 @@
-package model;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package cadastropoo.model;
 
+/**
+ *
+ * @author Thomaz Alves
+ */
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -52,7 +60,7 @@ public class PessoaJuridicaRepo {
 
     // Persistir dados
     public void persistir(String preFixo) {
-        try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("./Back-End-Java/Projetos" + preFixo + "juridica"))){
+        try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("./" + preFixo + "juridica"))){
             if(preFixo != ""){
                 out.writeObject(pessoasJuridicas);
             }else{
@@ -67,7 +75,7 @@ public class PessoaJuridicaRepo {
     // Recuperar dados
     @SuppressWarnings("unchecked")
     public void recuperar(String preFixo) {
-        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("./Back-End-Java/Projetos" + preFixo + "juridica"))){
+        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("./" + preFixo + "juridica"))){
             Object obj = in.readObject();
             if(obj instanceof ArrayList<?>){
                 pessoasJuridicas = (ArrayList<PessoaJuridica>) obj;

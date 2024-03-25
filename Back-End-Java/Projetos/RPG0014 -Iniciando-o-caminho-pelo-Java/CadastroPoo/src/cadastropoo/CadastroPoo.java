@@ -1,5 +1,14 @@
-package model;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package cadastropoo;
+import cadastropoo.model.*;
 
+/**
+ *
+ * @author Thomaz Alves
+ */
 import java.util.Scanner;
 
 public class CadastroPoo {
@@ -185,14 +194,14 @@ public class CadastroPoo {
                             System.out.println("Idade: " + pessoa.getIdade());
                             System.out.println("Cpf: " + pessoa.getCpf());
                             System.out.println("------------------------");
-                        };
+                        }
                     } else if(obterTodos.equalsIgnoreCase("j")){
                         for(PessoaJuridica pessoa : repoJuridica.obterTodos()){
                             System.out.println("Id: " + pessoa.getId());
                             System.out.println("Nome: " + pessoa.getName());
                             System.out.println("Cnpj: " + pessoa.getCnpf());
                             System.out.println("------------------------");
-                        };
+                        }
                     }
                 break;
 

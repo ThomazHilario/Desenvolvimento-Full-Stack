@@ -1,11 +1,19 @@
-package model;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package cadastropoo.model;
 
+/**
+ *
+ * @author Thomaz Alves
+ */
 public class PessoaJuridica extends Pessoa{
     // Atributos
     private String cnpj;
 
     // Constructor
-    PessoaJuridica(String nome, int id, String cnpj){
+    public PessoaJuridica(String nome, int id, String cnpj){
         super(id, nome);
 
         this.cnpj = cnpj;
