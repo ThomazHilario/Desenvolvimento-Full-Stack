@@ -46,6 +46,7 @@
         DecimalFormat df = new DecimalFormat("#,##0.00");
         Produto produto = (Produto) request.getAttribute("produto");
         String acao = produto != null ? "alterar" : "incluir";
+        String disabled = acao == "alterar" ? "disabled" : "";
     %>
 
     <div class="header-section text-center">
@@ -67,7 +68,7 @@
 
                 <div class="mb-3">
                     <label class="form-label" for="nome">Id</label>
-                    <input class="form-control" type="text" name="idProduto"  value="<%=produto != null ? produto.getIdProduto() : ""%>" required>
+                    <input class="form-control" type="text" name="idProduto" <%= disabled %> value="<%=produto != null ? produto.getIdProduto() : ""%>" required>
                 </div>
                 
                 <div class="mb-3">
