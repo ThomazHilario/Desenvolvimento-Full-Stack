@@ -1,7 +1,10 @@
 import e from 'express'
 import bodyParser from 'body-parser'
 import * as crypto from 'crypto'
+import { authMiddleware } from './middlewares/authMiddleware.js'
+import { authRbacMiddleware } from './middlewares/authRbacMiddleware.js'
 import { users } from './mocks/index.js'
+import jwt from 'jsonwebtoken'
 
 const app = e()
 
@@ -19,73 +22,53 @@ app.get('/', (req, res) => {
   res.json('Hello World')
 })
 
+// Recuperar as informações do usuário logado com base no token
+app.get('/api/auth/me', authMiddleware, (req, res) => {
+  return res.json(req.userData)
+})
+
+// Realizar login e criar um token para o usuário
 app.post('/api/auth/login', (req, res) => {
 
   const credentials = req.body
 
-  let userData;
-
-  userData = doLogin(credentials)
-
- 
+  let userData = doLogin(credentials)
 
   if(userData){
 
-    const dataToEncrypt = `{"usuario_id":${userData.id}}`;
+    const token = encrypt(userData.id)
 
-    const bufferToEncrypt = Buffer.from(dataToEncrypt, "utf8");
-
-    hashString = encrypt(bufferToEncrypt)
-
+    res.json({ token })
+    return
   }
 
-  res.json({ sessionid: hashString })
+  res.json({
+    message: 'User not found!'
+  })
 
 })
 
-//Endpoint para demonstração do processo de quebra da criptografia da session-id gerada no login
+// Decodificação do token no qual retorna somente o id do usuario.
+app.post('/api/auth/decrypt', authMiddleware, authRbacMiddleware, (req, res) => {
+  const tokenDecrypted = decrypt(req.token)
 
-// Esse endpoint, e consequente processo, não deve estar presente em uma API oficial,
-
-// aparecendo aqui apenas para finalidade de estudos.
-app.post('/api/auth/decrypt/:sessionid', (req, res) => {
-
-  const sessionid = req.params.sessionid;
-
-  //const decryptedSessionid = decryptData(sessionid);
-
-  const decryptedSessionid = decrypt(sessionid);
-
- 
-
-  res.json({ decryptedSessionid: decryptedSessionid })
-
+  res.json({ userId: tokenDecrypted.userId })
 })
 
 // Endpoint para recuperação dos dados
-app.get('/api/users/:sessionid', (req, res) => {
+app.get('/api/users', authMiddleware, authRbacMiddleware, (req, res) => {
 
-  const sessionid = req.params.sessionid;
-
-  const perfil = getPerfil(sessionid);
-
- 
-
-  if (perfil !== 'admin' ) {
-    res.status(403).json({ message: 'Forbidden' });
-  }else{
-    res.status(200).json({ data: users })
-  }
+  res.status(200).json({ data: users })
 })
 
 //Endpoint para recuperação dos contratos existentes
-
-app.get('/api/contracts/:empresa/:inicio/:sessionid', (req, res) => {
+app.get('/api/contracts/:empresa/:inicio/:sessionid', authMiddleware, authRbacMiddleware, (req, res) => {
 
   const empresa = req.params.empresa;
 
   const dtInicio = req.params.inicio;
 
+  // linha desnecessária
   const sessionid = req.params.sessionid;
 
  
@@ -106,76 +89,36 @@ app.get('/api/contracts/:empresa/:inicio/:sessionid', (req, res) => {
 
 function doLogin(credentials){
 
-  let userData
-
-  userData = users.find(item => {
-
-    if(credentials?.username === item.username && credentials?.password
-=== item.password)
-
+  let userData = users.find(item => {
+    if(credentials?.username === item.username && credentials?.password === item.password)
       return item;
-
   });
 
   return userData;
 
 }
 
-// Gerando as chaves necessárias para criptografia do id do usuário
-
-//  Nesse caso, a palavra-chave usada para encriptação é o nome da empresa detentora do software em questão.
-
+// Secret Key
 const secretKey = 'nomedaempresa';
 
-function encrypt(text) {
+function encrypt(id) {
 
-  const cipher = crypto.createCipher('aes-256-cbc', secretKey);
+   const token = jwt.sign({
+      userId: id
+    }, secretKey, { expiresIn:'180s' });
 
-  let encrypted = cipher.update(text, 'utf8', 'hex');
-
-  encrypted += cipher.final('hex');
-
-  return encrypted;
+  return token;
 
 }
 
-// Função de exemplo para demonstrar como é possível realizar a quebra da chave gerada (e usada como session id),
+// Responsável decodificar o token
+function decrypt(token) {
+  const result = jwt.verify(token, secretKey)
 
-//   tendo acesso ao algoritmo e à palavra-chave usadas na encriptação.
-
-function decrypt(encryptedText) {
-
-  const decipher = crypto.createDecipher('aes-256-cbc', secretKey);
-
-  let decrypted = decipher.update(encryptedText, 'hex', 'utf8');
-
-  decrypted += decipher.final('utf8');
-
-  return decrypted;
-
-}
-
-//Recupera o perfil do usuário através da session-i
-function getPerfil(sessionId){
-
-  const user = JSON.parse(decrypt(sessionId));
-
-  //varre o array de usuarios para encontrar o usuário correspondente ao id obtido da sessionId
-
-  const userData = users.find(item => {
-
-    if(parseInt(user.usuario_id) === parseInt(item.id))
-
-      return item;
-
-  });
-
-  return userData.perfil;
-
+  return result
 }
 
 // Classe fake emulando um script externo, responsável pela execução de queries no banco de dados
-
 class Repository{
 
   execute(query){
@@ -187,7 +130,6 @@ class Repository{
 }
 
 // Recupera, no banco de dados, os dados dos contratos
-
 // Metodo não funcional, servindo apenas para fins de estudo
 
 function getContracts(empresa, inicio){
