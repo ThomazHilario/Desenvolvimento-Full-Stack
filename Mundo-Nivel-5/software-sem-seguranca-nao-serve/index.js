@@ -1,10 +1,9 @@
 import e from 'express'
 import bodyParser from 'body-parser'
-import * as crypto from 'crypto'
 import { authMiddleware } from './middlewares/authMiddleware.js'
 import { authRbacMiddleware } from './middlewares/authRbacMiddleware.js'
 import { users } from './mocks/index.js'
-import jwt from 'jsonwebtoken'
+import { doLogin, encrypt, decrypt } from './services/auth.service.js'
 
 const app = e()
 
@@ -84,39 +83,6 @@ app.get('/api/contracts/:empresa/:inicio/:sessionid', authMiddleware, authRbacMi
     res.status(404).json({data: 'Dados Não encontrados'})
 
 })
-
-//APP SERVICES
-
-function doLogin(credentials){
-
-  let userData = users.find(item => {
-    if(credentials?.username === item.username && credentials?.password === item.password)
-      return item;
-  });
-
-  return userData;
-
-}
-
-// Secret Key
-const secretKey = 'nomedaempresa';
-
-function encrypt(id) {
-
-   const token = jwt.sign({
-      userId: id
-    }, secretKey, { expiresIn:'180s' });
-
-  return token;
-
-}
-
-// Responsável decodificar o token
-function decrypt(token) {
-  const result = jwt.verify(token, secretKey)
-
-  return result
-}
 
 // Classe fake emulando um script externo, responsável pela execução de queries no banco de dados
 class Repository{

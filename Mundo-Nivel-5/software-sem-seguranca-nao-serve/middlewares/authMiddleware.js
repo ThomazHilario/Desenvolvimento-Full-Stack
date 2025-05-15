@@ -1,7 +1,6 @@
 import { users } from '../mocks/index.js'
 import jwt from 'jsonwebtoken'
-
-const secretKey = 'nomedaempresa';
+import 'dotenv/config'
 
 export function authMiddleware(req, res, next){
   try{
@@ -46,7 +45,7 @@ export function authMiddleware(req, res, next){
 }
 
 function verifyToken(token){
-  const result = jwt.verify(token, secretKey)
+  const result = jwt.verify(token, process.env.SECRETKEY)
 
   if(result){
     return {
