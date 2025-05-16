@@ -1,6 +1,6 @@
-# Missão prática Dando Intelignecia ao software.
+# Missão prática Dando Inteligência ao software.
 
-## Objetivo fda missão prática:
+## Objetivo da missão prática:
 - Aplicar a Analise de Sentimentos, tarefa de Processamento de Linguagem Natural com uso de Machine Learning.
 
 ## Príncipais pontos da prática:
